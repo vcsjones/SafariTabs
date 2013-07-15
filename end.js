@@ -1,5 +1,5 @@
 function keyHandler(e) {
-	if (e.keyCode === 9) {
+	if (e.keyCode === 9 && e.target.nodeName === "TEXTAREA") {
 		var index = e.target.selectionStart;
 		e.target.value = e.target.value.slice(0, index) + "    " + e.target.value.slice(index, e.target.value.length);
 		e.preventDefault();
@@ -7,9 +7,5 @@ function keyHandler(e) {
 	}
 }
 
-var textAreas = document.querySelectorAll("textarea");
-
-for(var i=0; i<textAreas.length; i++) {
-	var area = textAreas[i];
-	area.addEventListener("keydown", keyHandler, false);
-}
+var bodyElement = document.querySelector("body");
+bodyElement.addEventListener("keydown", keyHandler, false);
